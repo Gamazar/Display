@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios, {AxiosResponse} from 'axios';
+import youtubeApi from '../api/youtube';
 
-interface IurlInputProp {
-    updateName: (arg: string) => void
-}
+const InputUrl = (props: any) => {
 
-const InputUrl: React.FC<string> = (prop: string) => {
+    
 
-    const key: String = "AIzaSyBdDG3avX6w2OCx4NKOjyeSZ8Aw2tnuc9I";
-    const playlistId = 10;
+    const submitUrl = async (keyword: any) => {
+        
+        //To do: Parse url passed from props to get the playlistId -
+
+        const response = await youtubeApi.get("/list",{
+            params: {
+                q: keyword
+            }
+        })
+
+        console.log(response);
+    }
+
     // const [youtubeList, setYoutubeList] = useState<any[]>([]);
   
     // useEffect(() => {
@@ -24,9 +34,9 @@ const InputUrl: React.FC<string> = (prop: string) => {
 
     return (
         <div className="input-section">
-            <input className="url-input" placeholder="Enter URL here"/>
+            <input className="url-input" placeholder="Enter Youtube URL here"/>
             <div>
-                <button className="submit-btn">Submit</button>
+                <button className="submit-btn" onClick={() => submitUrl("test")}>Submit</button>
             </div>
         </div>
     );

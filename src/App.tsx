@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import InputUrl from './components/InputUrl';
-import axios, {AxiosResponse} from 'axios';
+// import axios, {AxiosResponse} from 'axios';
 
 function App() {
 
-  const [playlist, setplaylist] = useState<string>();
+  //const [playlist, setplaylist] = useState<string>();
 
-  const updateName = (name: string): void => {
-    setplaylist(name);
-  }
+  const [inputVal, setValue] = useState('');
+
+  const [playlist, setPlaylist] = useState([]);
+
+  // const onInputChange = (data : string) => {
+  //   setValue(data);
+  //   console.log("here it is: " + data);
+  // }
 
   return (
     <div className="page-section">
-      <InputUrl updateName={updateName.bind("")}></InputUrl>
+      {/* <h1>{word}</h1> */}
+      <InputUrl
+        data={inputVal}
+        updateTest={(list:any) => setPlaylist(list)}></InputUrl>
+      {/* {playlist.map(list => <div>{list.test}</div>)} */}
     </div>
   );
 }
